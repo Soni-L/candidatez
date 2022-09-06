@@ -1,8 +1,10 @@
 import Head from "next/head";
-import NavBar from "../components/layout/Navbar";
 import styles from "../styles/Home.module.css";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -11,8 +13,28 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <NavBar/> */}
-      <NavBar/>
+      <button
+        style={{
+          position: "fixed",
+          margin: 0,
+          padding: 0,
+          fontSize: "50px",
+          bottom: "50px",
+          right: "20px",
+          borderRadius: "50%",
+          border: "1px solid black",
+          height: "50px",
+          width: "50px",
+          backgroundColor: "green",
+          color: "white",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        onClick={() => router.replace("/new-job")}
+      >
+        +
+      </button>
     </div>
   );
 }

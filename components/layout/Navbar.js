@@ -14,7 +14,7 @@ function NavBar() {
     <header className={classes.header}>
       <Link href="/">
         <a>
-          <div className={classes.logo}>Home</div>
+          <div className={classes.logo}>All Jobs</div>
         </a>
       </Link>
       <nav>
