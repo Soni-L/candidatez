@@ -31,7 +31,7 @@ export default function Home() {
           justifyContent: "center",
           alignItems: "center",
         }}
-        onClick={() => router.replace("/new-job")}
+        onClick={() => router.replace("/create-job")}
       >
         +
       </button>
