@@ -35,7 +35,7 @@ export default function Home() {
       </Head>
 
       <div style={{ display: "flex", flexDirection: "column", width: "100%", gap: '5px' }}>
-        {jobs?.map((job) => (
+        {jobs?.length && jobs?.map((job) => (
           <div key={job._id} style={{backgroundColor: 'pink'}}>{job.title}</div>
         ))}
       </div>
