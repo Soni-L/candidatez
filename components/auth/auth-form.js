@@ -12,9 +12,9 @@ async function createUser(email, password) {
 
   const data = await response;
 
-//   if (!response.ok) {
-//     throw new Error(data.message || "Something went wrong");
-//   }
+  if (!response.ok) {
+    throw new Error(data.message || "Something went wrong");
+  }
 
   return data;
 }
