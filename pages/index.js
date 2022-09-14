@@ -34,10 +34,24 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div style={{ display: "flex", flexDirection: "column", width: "100%", gap: '5px' }}>
-        {jobs?.length && jobs?.map((job) => (
-          <div key={job._id} style={{backgroundColor: 'pink'}}>{job.title}</div>
-        ))}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "100%",
+          gap: "5px",
+        }}
+      >
+        {jobs?.length &&
+          jobs?.map((job) => (
+            <div
+              key={job._id}
+              style={{ backgroundColor: "pink" }}
+              onClick={() => router.replace("/my-jobs/id")}
+            >
+              {job.title}
+            </div>
+          ))}
       </div>
 
       <button
