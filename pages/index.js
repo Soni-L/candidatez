@@ -47,7 +47,7 @@ export default function Home() {
             <div
               key={job._id}
               style={{ backgroundColor: "pink" }}
-              onClick={() => router.replace("/my-jobs/id")}
+              onClick={() => router.replace(`/my-jobs/${job._id}`)}
             >
               {job.title}
             </div>
