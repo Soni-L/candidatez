@@ -43,21 +43,29 @@ export default function Home() {
           gap: "5px",
         }}
       >
-        {jobs?.length &&
+        {jobs?.length ? (
           jobs?.map((job) => (
             <div
               key={job._id}
-              style={{ backgroundColor: "pink" }}
+              style={{
+                backgroundColor: "pink",
+                margin: "2px",
+                cursor: "pointer",
+              }}
               onClick={() => router.replace(`/${ROUTES.MY_JOBS}/${job._id}`)}
             >
               {job.title}
             </div>
-          ))}
+          ))
+        ) : (
+          <div>no active jobs</div>
+        )}
       </div>
 
       <button
         style={{
           position: "fixed",
+          cursor: "pointer",
           margin: 0,
           padding: 0,
           fontSize: "50px",
