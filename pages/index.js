@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import ROUTES from "../constants/routes";
 
 async function fetchAllJobs() {
   const response = await fetch("/api/jobs/alljobs", {
@@ -47,7 +48,7 @@ export default function Home() {
             <div
               key={job._id}
               style={{ backgroundColor: "pink" }}
-              onClick={() => router.replace(`/my-jobs/${job._id}`)}
+              onClick={() => router.replace(`/${ROUTES.MY_JOBS}/${job._id}`)}
             >
               {job.title}
             </div>

@@ -64,7 +64,7 @@ function AuthForm() {
 
   return (
     <section className={classes.auth}>
-      <h1>{isLogin ? "Login" : "Sign Up"}</h1>
+      <h1>{isLogin ? "Login" : "Sign up with your company email to post and manage jobs"}</h1>
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
           <label htmlFor="email">Your Email</label>
