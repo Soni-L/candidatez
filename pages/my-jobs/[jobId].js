@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb";
 import { getSession } from "next-auth/react";
 import { connectToDatabase } from "../../lib/db";
+import { useEffect, useState } from "react";
 
 export async function getServerSideProps(context) {
   const session = await getSession({ req: context.req });
@@ -29,14 +30,23 @@ export async function getServerSideProps(context) {
 }
 
 export default function JobApplicationPage({ job }) {
-  console.log(job);
+  const [origin, setOrigin] = useState();
+
+  useEffect(() => {
+    setOrigin(window.origin);
+  }, []);
+
   return (
     <div>
       {job && (
-        <>
+        <div style={{ display: "grid" }}>
           <div>{JSON.parse(job).title}</div>
           <div>{JSON.parse(job).description}</div>
-        </>
+          <a
+            style={{ color: "blue" }}
+            href={`/jobs/${JSON.parse(job)._id}`}
+          >{`${origin}/jobs/${JSON.parse(job)._id}`}</a>
+        </div>
       )}
     </div>
   );

@@ -21,7 +21,7 @@ async function fetchAllJobs() {
 
 export default function Home() {
   const router = useRouter();
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState(false);
 
   useEffect(() => {
     fetchAllJobs().then((jobs) => setJobs(jobs));
@@ -43,7 +43,7 @@ export default function Home() {
           gap: "5px",
         }}
       >
-        {jobs?.length ? (
+        {jobs && jobs?.length ? (
           jobs?.map((job) => (
             <div
               key={job._id}
