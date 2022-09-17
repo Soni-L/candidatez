@@ -1,5 +1,7 @@
+import React, { useEffect, useRef, useState } from "react";
 import { ObjectId } from "mongodb";
 import { connectToDatabase } from "../../lib/db";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps(context) {
   const client = await connectToDatabase();
@@ -17,7 +19,38 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function JobApplicationPage({job}) {
+async function applyToJob(jobId, fullName, coverLetter) {
+  const response = await fetch("/api/jobs/apply", {
+    method: "POST",
+    body: JSON.stringify({ jobId, fullName, coverLetter }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+
+  // if (!response?.ok) {
+  //   throw new Error(data.message || "Something went wrong!");
+  // }
+
+  return data;
+}
+
+export default function JobApplicationPage({ job }) {
+  const router = useRouter();
+  const fullName = useRef();
+  const coverLetter = useRef();
+
+  async function submitHandler(event) {
+    event.preventDefault();
+    await applyToJob(
+      router.query.jobId,
+      fullName.current.value,
+      coverLetter.current.value,
+    );
+  }
+
   return (
     <div>
       {job && (
@@ -26,6 +59,20 @@ export default function JobApplicationPage({job}) {
           <div>{JSON.parse(job).description}</div>
         </div>
       )}
+
+      <form onSubmit={submitHandler}>
+        <div>
+          <label htmlFor="fullName">Full Name</label>
+          <input type="text" id="fullName" required ref={fullName} />
+        </div>
+        <div>
+          <label htmlFor="coverLetter">Cover Letter</label>
+          <input type="text-area" id="coverLetter" required ref={coverLetter} />
+        </div>
+        <button type="button" onClick={submitHandler}>
+          Send Application
+        </button>
+      </form>
     </div>
   );
 }
